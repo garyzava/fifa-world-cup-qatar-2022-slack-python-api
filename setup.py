@@ -5,11 +5,11 @@ with open('requirements.txt') as f:
     requirements = f.read().splitlines()
 
 # Package meta-data.
-NAME = 'mypackage'
-DESCRIPTION = 'My short description for my project.'
-URL = 'https://github.com/me/myproject'
-EMAIL = 'me@example.com'
-AUTHOR = 'Awesome Soul'
+NAME = 'my-fifa-2022-package'
+DESCRIPTION = 'Python script that reads data from the FIFAs API for World Cup Qatar 2022, then post the data on a slack channel through a slack bot (slack app)'
+URL = 'https://github.com/garyzava/fifa-world-cup-qatar-2022-slack-python-api/'
+EMAIL = 'garyzava@umich.edu'
+AUTHOR = 'garyzava'
 REQUIRES_PYTHON = '>=3.6.0'
 VERSION = '0.1.0'
 
