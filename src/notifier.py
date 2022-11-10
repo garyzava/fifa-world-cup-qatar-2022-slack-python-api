@@ -11,6 +11,7 @@ from requests import Request, Session
 import dateutil.parser
 from slack_handler import post_to_slack_gz
 
+#Change your slack channel name here
 SLACK_CHANNEL="#gary-test"
 
 #set the timezone to be the same as the in the FIFA API:
@@ -21,7 +22,7 @@ FIFA_API_URL = "https://api.fifa.com/api/v1/"
 ID_COMPETITION = 17
 #FIFA World Cup Russia 2018-> ID_SEASON = 254645 
 #FIFA World Cup Qatar 2022-> ID_SEASON = 255711
-ID_SEASON = 255711 
+ID_SEASON = 254645 
 
 # Match Statuses
 MATCH_STATUS_FINISHED = 0
@@ -110,17 +111,14 @@ def save_to_json(file):
 
 def microtime(get_as_float=False):
    """Return current Unix timestamp in microseconds."""
+   gmt_unixtime = time.mktime(time.gmtime())
    if get_as_float:
        #return time.time()
-       return time.gmtime()
+       return gmt_unixtime
    else:
-       #x, y = math.modf(time.time())
-       x, y = math.modf(time.gmtime())
+       x, y = math.modf(gmt_unixtime)
+       #x, y = math.modf(time.gmtime())
        return f'{x} {y}'
-
-#TEST get time from unix time
-#def get_time_from_unix(unix_time):
-#   return time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(unix_time))
 
 # Let’s grab the data we have on our json file:
 DB = json.loads(open(DATA_FILE).read())

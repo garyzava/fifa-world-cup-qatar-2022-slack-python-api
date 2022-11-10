@@ -3,18 +3,24 @@ import csv
 import requests
 import time
 from dotenv import load_dotenv, find_dotenv
-from flask import Flask
-from flask import jsonify
-from flask import request
+#from flask import Flask
+#from flask import jsonify
+#from flask import request
 from http import HTTPStatus
 #from twilio.rest import Client
 #from slackclient import SlackClient
 import slack
+from pathlib import Path
 
-load_dotenv(find_dotenv())
+#load_dotenv(find_dotenv())
+
+env_path = Path('.') / '../env/.env'
+#env_path = Path('.') / '.env'
+load_dotenv(dotenv_path=env_path)
 
 # constants
-SLACK_BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")
+SLACK_BOT_TOKEN = 'xoxb-888997541077-4277254429475-uZns2YG8qJ3cO6oIQ6zwcdHp'
+#print(SLACK_BOT_TOKEN)
 SLACK_BOT_ID = os.getenv("SLACK_BOT_ID")
 
 AT_BOT = f'<@{SLACK_BOT_ID}>'
@@ -25,7 +31,9 @@ BOT_COMMAND = "subscribe"
 #CLIENT = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 # instantiate Slack Client
 #SLACK_CLIENT = SlackClient(SLACK_BOT_TOKEN)
-SLACK_CLIENT = slack.WebClient(token = os.environ['BEEPBOOP_BOT'])
+
+#SLACK_CLIENT = slack.WebClient(token = os.environ['BEEPBOOP_BOT'])
+SLACK_CLIENT = slack.WebClient(token = SLACK_BOT_TOKEN)
 
 def add_subscriber(phone_number: str):
    """
