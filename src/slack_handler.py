@@ -19,7 +19,7 @@ env_path = Path('.') / '../env/.env'
 load_dotenv(dotenv_path=env_path)
 
 # constants
-SLACK_BOT_TOKEN = 'xoxb-888997541077-4277254429475-uZns2YG8qJ3cO6oIQ6zwcdHp'
+SLACK_BOT_TOKEN = os.environ['SLACK_BOT_TOKEN']
 #print(SLACK_BOT_TOKEN)
 SLACK_BOT_ID = os.getenv("SLACK_BOT_ID")
 
