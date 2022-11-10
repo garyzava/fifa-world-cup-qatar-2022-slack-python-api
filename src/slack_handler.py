@@ -14,7 +14,8 @@ from pathlib import Path
 
 #load_dotenv(find_dotenv())
 
-env_path = Path('.') / '../env/.env'
+#env_path = Path('.') / '../env/.env'
+env_path = './env/.env'
 #env_path = Path('.') / '.env'
 load_dotenv(dotenv_path=env_path)
 
