@@ -9,7 +9,18 @@ import dateutil.parser
 from requests import Request, Session
 
 import dateutil.parser
-from slack_handler import post_to_slack_gz
+
+from dotenv import load_dotenv
+
+import slack
+from pathlib import Path
+
+env_path = './env/.env'
+load_dotenv(dotenv_path=env_path)
+
+# constants
+SLACK_BOT_TOKEN = os.environ['SLACK_BOT_TOKEN']
+SLACK_CLIENT = slack.WebClient(token = SLACK_BOT_TOKEN)
 
 #Change your slack channel name here
 SLACK_CHANNEL="#gary-test"
@@ -72,6 +83,9 @@ language = { 'en-GB': [
    'END OF 2ND ET',
    'End of penalty shoot-out'
    ]}
+
+def post_to_slack_gz(channel, body=None, attachment_text=None):
+   SLACK_CLIENT.chat_postMessage(channel=channel, text=body, attachments=[{"text": attachment_text}], as_user=True) 
 
 def get_url(url, do_not_use_etag=False):
 
@@ -147,9 +161,7 @@ for match in matches:
            },
            'last_update': microtime()
        }
-       # send sms and save data
-       #send_sms(f'{language[LOCALE][0]} {match["Home"]["TeamName"][0]["Description"]} vs. 
-       #{match["Away"]["TeamName"][0]["Description"]} {language[LOCALE][1]}!')
+       # send slack message about the match starting
        post_to_slack_gz(SLACK_CHANNEL, f'{language[LOCALE][0]} {match["Home"]["TeamName"][0]["Description"]} vs. {match["Away"]["TeamName"][0]["Description"]} {language[LOCALE][1]}!')
 
    if match["IdMatch"] in DB["live_matches"]:
@@ -252,7 +264,6 @@ for live_match in live_matches:
 
                elif event_type == EVENT_PENALTY_MISSED or event_type == EVENT_PENALTY_SAVED:
                    event_player_alias = get_player_alias(event["IdPlayer"])
-                   #subject = f'{language_[LOCALE][7]} {event_team}!!!'
                    subject = f'{language[LOCALE][7]} {event_team}!!!'
                    details = f'{event_player_alias} ({match_time})'
 
@@ -267,9 +278,7 @@ for live_match in live_matches:
                    continue
                 
                if interesting_event:
-                   #send_sms(subject, details)
                    post_to_slack_gz(SLACK_CHANNEL, subject, details)
-                   #post_to_slack_gz(SLACK_CHANNEL, "if interesting_event")
                    DB[live_match]['last_update'] = microtime()
 
                if not DB["live_matches"]:
