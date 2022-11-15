@@ -33,7 +33,7 @@ FIFA_API_URL = "https://api.fifa.com/api/v1/"
 ID_COMPETITION = 17
 #FIFA World Cup Russia 2018-> ID_SEASON = 254645 
 #FIFA World Cup Qatar 2022-> ID_SEASON = 255711
-ID_SEASON = 255711 
+ID_SEASON = 254645 
 
 # Match Statuses
 MATCH_STATUS_FINISHED = 0
@@ -64,7 +64,7 @@ PERIOD_PENALTY = 11
 # Language
 LOCALE = 'en-GB'
 
-DATA_FILE = './data/worldCupData.json'
+DATA_FILE = './data/worldCupData-test.json'
 
 language = { 'en-GB': [
    'The match between',
@@ -195,8 +195,8 @@ for live_match in live_matches:
 
            event_time_secs = time.mktime(event_timestamp.timetuple())
 
-           if event_time_secs > float(last_update_secs):
-           #if 1==1:
+           #if event_time_secs > float(last_update_secs):
+           if 1==1:
                match_time = event["MatchMinute"]
                _teams_by_id = DB[live_match]['teamsById']
                for key, value in _teams_by_id.items():
