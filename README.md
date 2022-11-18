@@ -28,10 +28,18 @@ SLACK_BOT_TOKEN='xoxb-****'
 ```
 
 ## Usage
-TO DO
+Create a cron job or a windows task to run the notifier.py every minute.
+
+Example to run it from linux environments:
+```python
+cd [path_to_your_directory] && source [virtualenv_name]/bin/activate && python notifier.py >> ./notifier.log
+```
 
 ## Test
-TO DO
+The notifier-test.py has the code changed to run a backtest from a match from the 2018 world cup. It uses the wordcipData-test.json which contains a match between Uruguay and Fracen.
+```python
+cd [path_to_your_directory] && source [virtualenv_name]/bin/activate && python notifier-test.py
+```
 
 ## Credits And Useful Resources:
 * Worldcup Slack Bot in PHP https://github.com/j0k3r/worldcup-slack-bot/blob/master/worldCupNotifier.php
