@@ -199,11 +199,19 @@ for live_match in live_matches:
            #if 1==1:
                match_time = event["MatchMinute"]
                _teams_by_id = DB[live_match]['teamsById']
-               for key, value in _teams_by_id.items():
-                   if key == event["IdTeam"]:
-                       event_team = value
-                   else:
+               for key, value in _teams_by_id.items():           
+                   try:
+                    if key == event["IdTeam"]:
+                        event_team = value
+                    else:
+                        event_other_team = value                
+                   except:
                        event_other_team = value
+                       pass                    
+                   #if key == event["IdTeam"]:
+                   #    event_team = value
+                   #else:
+                   #    event_other_team = value
                event_player_alias = None
                score = f'{home_team_name} {event["HomeGoals"]} - {event["AwayGoals"]} {away_team_name}'
                subject = ''
