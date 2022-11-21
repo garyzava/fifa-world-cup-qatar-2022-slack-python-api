@@ -29,7 +29,7 @@ SLACK_CHANNEL="#gary-test"
 os.environ['TZ'] = 'UTC'
 #time.tzset()
 # FIFA API 2018 CONSTANTS
-FIFA_API_URL = "https://api.fifa.com/api/v1/"
+FIFA_API_URL = "https://api.fifa.com/api/v3/"
 ID_COMPETITION = 17
 #FIFA World Cup Russia 2018-> ID_SEASON = 254645 
 #FIFA World Cup Qatar 2022-> ID_SEASON = 255711
